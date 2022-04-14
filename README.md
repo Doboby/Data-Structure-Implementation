@@ -1,32 +1,29 @@
-# GROUP-NAME - lab NUMBER - variant NUMBER
+ 
+# Title  
+	Data_Structure_Implementation for Laboratory Works of CPO Course    
+	
+# Group Name and List of Group Menmber      
+	Group Name: DOBBY
+	Group Member:  Du Mei && Zhu Haonan   
+  
+# HDU Number
+  	Du Mei : 212320038
+  	Zhu Haonan : 212320035
 
-This is an example project which demonstrates project structure and necessary
-CI checks. It is not the best structure for real-world projects, but good
-enough for educational purposes.
+# Laboratory Work Number    
+	1    
+	
+# Variant Number & Description   
+(5)Set based on hash-map (collision resolution: open address )
+  
+# Synopsis
+In this laboratory work, We have completed some basic operations on the dictionary structure with python LIST. These operations include: add, remove, get.
+Our code has been committed into the github https://github.com/Doboby/Data-Structure-Implementation
 
-## Project structure
+# Work Demonstration
+Use 'cd' command-line to go to the file in the path of the local computer, and execute one of the following command-line statements to execute the corresponding test file.  
+ 
+	python test.py  
 
-- `foo.py` -- implementation of `Foo` class with `hello` and `add` features.
-   Stateless.
-- `foo_test.py` -- unit and PBT tests for `Foo`.
-
-## Features
-
-- PBT: `test_add_commutative`
-
-## Contribution
-
-- Aleksandr Penskoi (EMAIL) -- all work.
-
-## Changelog
-
-- 29.03.2022 - 2
-  - Add test coverage.
-- 29.03.2022 - 1
-  - Update README. Add formal sections.
-- 29.03.2022 - 0
-  - Initial
-
-## Design notes
-
-- ...
+# TIPS
+Because the annotation is written in Chinese, please translate it by yourself:)
