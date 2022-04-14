@@ -16,11 +16,11 @@
 ###### Variant Number & Description   
 (5)Set based on hash-map (collision resolution: open address )
   
-####### Synopsis
+* Synopsis
 In this laboratory work, We have completed some basic operations on the dictionary structure with python LIST. These operations include: add, remove, get.
 Our code has been committed into the github https://github.com/Doboby/Data-Structure-Implementation
 
-######## Work Demonstration
+* Work Demonstration
 Use 'cd' command-line to go to the file in the path of the local computer, and execute one of the following command-line statements to execute the corresponding test file.  
  
 	python HashMapMutable_test.py
