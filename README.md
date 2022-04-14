@@ -5,9 +5,9 @@ We use Linear detection of open address to collision resolution
 
 ## Project structure
 
-- `HashMapMutable.py` -- implementation of `Node` class for basic Data Structure and `HashMap` class with `__init__` `__len__` `add` `get` `get_hash_value` 
-   and `remove` features.
-- `HashMapMutable_test.py` -- we set `get` `add` and `remove` tests for `HashMapMutable`.
+- `HashMapMutable.py` -- implementation of `Node` class for basic Data Structure.
+   and `HashMap` class with `__len__` `add` `get` and `remove` features.
+- `HashMapMutable_test.py` -- we set tests for `HashMapMutable`.
 
 ## Contribution
 
@@ -23,6 +23,6 @@ We use Linear detection of open address to collision resolution
 
 ## Design notes
 
-- In this laboratory work, We have completed some basic operations on the dictionary structure with python LIST. 
+- In this laboratory work, We have completed some basic operations on the dictionary structure.
 - These operations include: `__init__` `__len__` `add` `get` `get_hash_value` and `remove`.
 - Our code has been committed into the github <https://github.com/Doboby/Data-Structure-Implementation>
