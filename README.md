@@ -23,7 +23,5 @@ Our code has been committed into the github https://github.com/Doboby/Data-Struc
 # Work Demonstration
 Use 'cd' command-line to go to the file in the path of the local computer, and execute one of the following command-line statements to execute the corresponding test file.  
  
-	python test.py  
+	python HashMapMutable_test.py
 
-# TIPS
-Because the annotation is written in Chinese, please translate it by yourself:)
