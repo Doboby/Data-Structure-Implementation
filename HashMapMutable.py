@@ -23,7 +23,8 @@ class HashMap(object):
         hash_value = hash(key) % self.size
         kv_entry = Node(key, value)
 
-        if self.data[hash_value] == self.empty or self.data[hash_value].key == -1:
+        if self.data[hash_value] == self.empty \
+                or self.data[hash_value].key == -1:
             self.data[hash_value] = kv_entry
             self.key_set.append(key)
             self.len = self.len + 1
@@ -33,7 +34,8 @@ class HashMap(object):
             while i < self.size:
                 index = (hash_value + 1) % self.size
                 hash_value = index
-                if self.data[index] == self.empty or self.data[hash_value].key == -1:
+                if self.data[index] == self.empty \
+                        or self.data[hash_value].key == -1:
                     self.data[index] = kv_entry
                     self.len = self.len + 1
                     flag = True
@@ -82,7 +84,6 @@ class HashMap(object):
             self.key_set.remove(key)
             self.len = self.len - 1
             return True
-
 
 
 
