@@ -35,3 +35,4 @@ class TestHashMapMutable(unittest.TestCase):
         hash.add(14, 66)
         hash.remove(8)
         self.assertEqual(len(hash), 3)
+        
