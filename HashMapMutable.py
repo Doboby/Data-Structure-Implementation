@@ -84,7 +84,3 @@ class HashMap(object):
             self.key_set.remove(key)
             self.len = self.len - 1
             return True
-
-
-
-
