@@ -37,6 +37,3 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertEqual(len(hash), 3)
 
 
-if __name__ == '__main__':
-    unittest.main()
-
