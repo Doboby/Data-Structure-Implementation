@@ -23,6 +23,6 @@ We use Linear detection of open address to collision resolution
 
 ## Design notes
 
-- In this laboratory work, We have completed some basic operations on the dictionary structure.
-- These operations include: `__init__` `__len__` `add` `get` `get_hash_value` and `remove`.
+- In this lab work, We have completed some basic operations on the dictionary structure.
+- These operations about: `__len__` `add` `get` `get_hash_value` and `remove`.
 - Our code has been committed into the github <https://github.com/Doboby/Data-Structure-Implementation>
