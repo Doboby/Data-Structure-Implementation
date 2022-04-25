@@ -18,6 +18,7 @@ We use Linear detection of open address to collision resolution
 - zhuhaonan(921057454@qq.com) -- fix Bugs and test.
 
 ## Changelog
+
 - 25.04.2022 - 2
   - add other function. Update README.
 - 14.04.2022 - 1
