@@ -36,7 +36,6 @@ class HashMap(object):
                 self.len = self.len + 1
             else:
                 i = 0
-                flag = False
                 while i < self.size:
                     index = (hash_value + 1) % self.size
                     hash_value = index

@@ -67,19 +67,6 @@ class TestHashMapMutable(unittest.TestCase):
         hash.from_dict(dict)
         self.assertEqual(hash.to_list(), [2, 2, 1, 3])
 
-    def test_from_list(self):
-        test_data = [
-            [],
-            ['a'],
-            ['0', '11'],
-            [1, 2, 3],
-            [None]
-        ]
-        for e in test_data:
-            hash = HashMap()
-            hash.from_list(e)
-            self.assertEqual(hash.to_list(), e)
-
     def test_find_iseven(self):
         hash = HashMap()
         hash.from_list([1, 5, 6.0, 7.0, None, 'ss', 'dasd'])
