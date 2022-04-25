@@ -135,7 +135,7 @@ class HashMap(object):
 
     def to_dict(self):
         kvDict = {}
-        if self.len is 0:
+        if self.len == 0:
             return kvDict
         else:
             for temp in self.data:
