@@ -84,7 +84,7 @@ class TestHashMapMutable(unittest.TestCase):
         hash = HashMap()
         hash.from_list([1, 5, 6.0, 7.0, None, 'ss', 'dasd'])
         self.assertEqual(hash.to_list(), [1, 5, 6.0, 7.0, None, 'ss', 'dasd'])
-        self.assertEqual(hash.find_iseven(), [2, 4, 6.0])
+        self.assertEqual(hash.find_iseven(), [6.0])
 
     def test_filter_iseven(self):
         hash = HashMap()
