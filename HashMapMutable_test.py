@@ -82,18 +82,15 @@ class TestHashMapMutable(unittest.TestCase):
 
     def test_find_iseven(self):
         hash = HashMap()
-        hash.from_list([1, 2, 3, 4, 5, 6.0, 7.0, None, 'ss', 'dasd'])
-        self.assertEqual(hash.to_list(),
-            [1, 2, 3, 4, 5, 6.0, 7.0, None, 'ss', 'dasd'])
+        hash.from_list([1, 5, 6.0, 7.0, None, 'ss', 'dasd'])
+        self.assertEqual(hash.to_list(), [1, 5, 6.0, 7.0, None, 'ss', 'dasd'])
         self.assertEqual(hash.find_iseven(), [2, 4, 6.0])
 
     def test_filter_iseven(self):
         hash = HashMap()
-        hash.from_list(
-            [1, 2, 3, 4, 5, 6.0, 7.0, None, 'ss', 'dasd'])
-        self.assertEqual(hash.to_list(),
-            [1, 2, 3, 4, 5, 6.0, 7.0, None, 'ss', 'dasd'])
-        self.assertEqual(hash.filter_iseven(), [1, 3, 5, 7.0, None, 'ss', 'dasd'])
+        hash.from_list([1, 5, 6.0, 7.0, None, 'ss', 'dasd'])
+        self.assertEqual(hash.to_list(), [1, 5, 6.0, 7.0, None, 'ss', 'dasd'])
+        self.assertEqual(hash.filter_iseven(), [1, 5, 7.0, None, 'ss', 'dasd'])
 
     def test_map(self):
         dict1 = {3: 23, 4: 323}
@@ -126,12 +123,12 @@ class TestHashMapMutable(unittest.TestCase):
         hash = HashMap()
         hash_a = HashMap()
         hash_a.from_list(a)
-        self.assertEqual(
-            hash.mconcat(hash.mempty(), hash_a), hash_a)
-        self.assertEqual(
-            hash.mconcat(hash_a, hash.mempty()), hash_a)
+        self.assertEqual(hash.mconcat(hash.mempty(), hash_a), hash_a)
+        self.assertEqual(hash.mconcat(hash_a, hash.mempty()), hash_a)
 
-    @given(a=st.lists(st.integers()), b=st.lists(st.integers()), c=st.lists(st.integers()))
+    @given(a=st.lists(st.integers()),
+           b=st.lists(st.integers()),
+           c=st.lists(st.integers()))
     def test_monoid_associativity(self, a, b, c):
         hash = HashMap()
         hash_a = HashMap()
