@@ -9,7 +9,7 @@ We use Linear detection of open address to collision resolution
    and `HashMap` class with `add` `get` and `remove` features.
 - we add other function: `remove_by_key` `remove_by_index` `get_size`
   `from_list` `to_list` `from_dict` `to_dict` `map` `mempty` `mconcat`
-  `find_iseven` `filter_iseven` `reduce` `iterator`
+  `find_iseven` `filter` `reduce` `iterator`
 - `HashMapMutable_test.py` -- we set all function tests for `HashMapMutable`.
 
 ## Contribution
@@ -18,7 +18,10 @@ We use Linear detection of open address to collision resolution
 - zhuhaonan(921057454@qq.com) -- fix Bugs and test.
 
 ## Changelog
-
+- 03.05.2022 - 3
+  - modify map and filter functions.
+  - fix mconcat and mempty functions.
+  - Update README.
 - 25.04.2022 - 2
   - add other function. Update README.
 - 14.04.2022 - 1
