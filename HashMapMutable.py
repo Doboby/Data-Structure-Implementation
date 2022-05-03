@@ -142,25 +142,22 @@ class HashMap(object):
                     kvDict[temp.key] = temp.value
         return kvDict
 
-    def map(self, f):
-        dict = {}
-        for key in self.key_set:
-            value = f(self.get(key))
-            dict[key] = value
-        return dict
+    def map(self, func):
+        for data in self.data:
+            if data != self.empty and data.key != -1:
+                data.value = func(data.value)
 
     def mempty(self):
-        return None
+        for data in self.data:
+            data = self.empty
+        return self.data
 
-    def mconcat(self, a, b):
+    def mconcat(self, a):
         if a is None:
-            return b
-        if b is None:
-            return a
-        for key in b.key_set:
-            value = b.get(key)
-            a.add(key, value)
-        return a
+            return
+        for key in a.key_set:
+            value = a.get(key)
+            self.add(key, value)
 
     def find_iseven(self):
         list = self.to_list()
@@ -171,13 +168,14 @@ class HashMap(object):
                     my_list.append(value)
         return my_list
 
-    def filter_iseven(self):
+    def filter(self, function):
+        result = []
         list = self.to_list()
         for value in list:
-            if type(value) is int or type(value) is float:
-                if value % 2 == 0:
-                    list.remove(value)
-        return list
+            flag = function(value)
+            if flag:
+                result.append(value)
+        return result
 
     def reduce(self, f, initial_state):
         state = initial_state
