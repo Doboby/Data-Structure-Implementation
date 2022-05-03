@@ -141,3 +141,10 @@ class TestHashMapMutable(unittest.TestCase):
         hash_c.from_list(b)
         hash_a.mconcat(hash_b)
         self.assertEqual(hash_a.to_list(), hash_c.to_list())
+
+    @given(a=st.lists(st.integers()))
+    def test_empty(self, a):
+        hash = HashMap()
+        hash.from_list(a)
+        hash.mempty()
+        self.assertEqual(hash.to_list(), [])

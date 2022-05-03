@@ -148,9 +148,10 @@ class HashMap(object):
                 data.value = func(data.value)
 
     def mempty(self):
-        for data in self.data:
-            data = self.empty
-        return self.data
+        for key in self.key_set:
+            self.data[self.get_hash_value(key)] = self.empty
+        self.key_set = []
+        self.len = 0
 
     def mconcat(self, a):
         if a is None:
