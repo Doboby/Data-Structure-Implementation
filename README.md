@@ -19,6 +19,9 @@ We use Linear detection of open address to collision resolution
 
 ## Changelog
 
+- 08.05.2022 - 4
+  - fix filter functions.
+  - fix monoid properties PBT.
 - 03.05.2022 - 3
   - modify map and filter functions.
   - fix mconcat and mempty functions.

@@ -82,7 +82,8 @@ class TestHashMapMutable(unittest.TestCase):
         hash = HashMap()
         hash.from_list([1, 5, 6.0, 7.0, None, 'ss', 'dasd'])
         self.assertEqual(hash.to_list(), [1, 5, 6.0, 7.0, None, 'ss', 'dasd'])
-        self.assertEqual(hash.filter(even), [1, 5, 7.0, None, 'ss', 'dasd'])
+        hash.filter(even)
+        self.assertEqual(hash.to_list(), [1, 5, 7.0, None, 'ss', 'dasd'])
 
     def test_map(self):
         dict1 = {3: 23, 4: 323}
@@ -130,17 +131,40 @@ class TestHashMapMutable(unittest.TestCase):
         hash.from_list(a)
         self.assertEqual(hash.to_list(), a)
 
-    @given(a=st.lists(st.integers()), b=st.lists(st.integers()))
-    def test_monoid(self, a, b):
+    @given(a=st.lists(st.integers()))
+    def test_monoid_identity(self, a):
+        hash = HashMap()
+        hash.mempty()
+
         hash_a = HashMap()
+        hash_a.from_list(a)
+        # a·empty
+        hash_a.mconcat(hash)
+        # empty·a
+        hash.mconcat(hash_a)
+        self.assertEqual(hash_a.to_list(), hash.to_list())
+
+    @given(a=st.lists(st.integers()), b=st.lists(st.integers()), c=st.lists(st.integers()))
+    def test_monoid_associativity(self, a, b, c):
+
+        hash_a_1 = HashMap()
+        hash_a_2 = HashMap()
         hash_b = HashMap()
         hash_c = HashMap()
-        hash_a.from_list(a)
+
+        hash_a_1.from_list(a)
+        hash_a_2.from_list(a)
         hash_b.from_list(b)
-        hash_c.from_list(a)
-        hash_c.from_list(b)
-        hash_a.mconcat(hash_b)
-        self.assertEqual(hash_a.to_list(), hash_c.to_list())
+        hash_c.from_list(c)
+
+        # (a·b)·c
+        hash_a_1.mconcat(hash_b)
+        hash_a_1.mconcat(hash_c)
+        # a·(b·c)
+        hash_b.mconcat(hash_c)
+        hash_a_2.mconcat(hash_b)
+
+        self.assertEqual(hash_a_1.to_list(), hash_a_2.to_list())
 
     @given(a=st.lists(st.integers()))
     def test_empty(self, a):

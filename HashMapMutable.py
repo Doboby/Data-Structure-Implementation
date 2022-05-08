@@ -170,13 +170,14 @@ class HashMap(object):
         return my_list
 
     def filter(self, function):
-        result = []
-        list = self.to_list()
-        for value in list:
-            flag = function(value)
-            if flag:
-                result.append(value)
-        return result
+        for data in self.data:
+            if data != self.empty and data.key != -1:
+                value = data.value
+                flag = function(value)
+                if not flag:
+                    self.key_set.remove(data.key)
+                    data.key = -1
+                    self.len -= 1
 
     def reduce(self, f, initial_state):
         state = initial_state
