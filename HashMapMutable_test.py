@@ -144,7 +144,8 @@ class TestHashMapMutable(unittest.TestCase):
         hash.mconcat(hash_a)
         self.assertEqual(hash_a.to_list(), hash.to_list())
 
-    @given(a=st.lists(st.integers()), b=st.lists(st.integers()), c=st.lists(st.integers()))
+    @given(a=st.lists(st.integers()),
+           b=st.lists(st.integers()), c=st.lists(st.integers()))
     def test_monoid_associativity(self, a, b, c):
 
         hash_a_1 = HashMap()
