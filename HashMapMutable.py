@@ -19,8 +19,10 @@ class HashMap(Generic[VI]):
     empty = Node()
 
     def __init__(self, hashcode: int = 51):
-        self.key_set: list = []  # used to store the elements key added to the hash map
-        self.data: list[Node] = [self.empty for _ in range(hashcode)]  # Used to store element nodes
+        self.key_set: list = []
+        # used to store the elements key added to the hash map
+        self.data: list[Node] = [self.empty for _ in range(hashcode)]
+        # Used to store element nodes
         self.size = hashcode  # table size
         self.len = 0
         self.index = 0
