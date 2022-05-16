@@ -197,7 +197,7 @@ class HashMap:
         transfer hash map into dict
         :return: result kvDict
         """
-        kvDict:Dict[Any, Any] = {}
+        kvDict: Dict[Any, Any] = {}
         if self.len == 0:
             return kvDict
         else:
