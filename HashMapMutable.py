@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Any, Generic, Union
+from typing import Callable, Dict, Any, Union
 
 
 class Node:
