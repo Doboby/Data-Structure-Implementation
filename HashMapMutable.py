@@ -167,6 +167,7 @@ class HashMap:
         """
         add element from list type
         :param List:input list
+        :return: None
         """
         for k, v in enumerate(List):
             self.add(k, v)
@@ -185,6 +186,7 @@ class HashMap:
         """
         add elements from dict type
         :param dict:input dict
+        :return: None
         """
         for k, v in dict.items():
             self.add(k, v)
@@ -207,6 +209,7 @@ class HashMap:
         """
         Map element value in hash map with func
         :param func:input function
+        :return: None
         """
         for data in self.data:
             if data != self.empty and data.key != -1:
@@ -215,6 +218,7 @@ class HashMap:
     def mempty(self):
         """
         The empty element in property monoid, usually called mempty.
+        :return: None
         """
         for key in self.key_set:
             self.data[self.get_hash_value(key)] = self.empty
@@ -225,6 +229,7 @@ class HashMap:
         """
         Operation in property monoid.
         :param a: input hash map,add it into self
+        :return: None
         """
         if a is None:
             return
@@ -249,6 +254,7 @@ class HashMap:
         """
         Filter element with function in hash map.
         :param function: input function
+        :return: None
         """
         for data in self.data:
             if data != self.empty and data.key != -1:
