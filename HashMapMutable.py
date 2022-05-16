@@ -8,7 +8,7 @@ class Node:
 
 
 # VI = TypeVar("VI", None, Node, str, int, float, object)
-VI = Union[int, str, Node, float, bool, list, dict, object, None]
+VI = Union[int, str, Node, float, bool, list, dict, object, None, Any]
 
 
 class HashMap:
