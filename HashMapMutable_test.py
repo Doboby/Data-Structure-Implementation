@@ -74,7 +74,7 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertEqual(hash.find_iseven(), [6.0])
 
     def test_filter(self) -> None:
-        def even(value):
+        def even(value: int) -> bool:
             if type(value) is int or type(value) is float:
                 if value % 2 == 0:
                     return False
@@ -113,26 +113,26 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertRaises(StopIteration, lambda: next(i))
 
     @given(st.lists(st.integers()))
-    def test_from_list_to_list_equality(self, a) -> None:
+    def test_from_list_to_list_equality(self, a: int) -> None:
         hash = HashMap()
         hash.from_list(a)
         b = hash.to_list()
         self.assertEqual(a, b)
 
     @given(st.lists(st.integers()))
-    def test_python_len_and_list_size_equality(self, a) -> None:
+    def test_python_len_and_list_size_equality(self, a: int) -> None:
         hash = HashMap()
         hash.from_list(a)
         self.assertEqual(hash.get_size(), len(a))
 
     @given(st.lists(st.integers()))
-    def test_from_list(self, a) -> None:
+    def test_from_list(self, a: int) -> None:
         hash = HashMap()
         hash.from_list(a)
         self.assertEqual(hash.to_list(), a)
 
     @given(a=st.lists(st.integers()))
-    def test_monoid_identity(self, a) -> None:
+    def test_monoid_identity(self, a: int) -> None:
         hash = HashMap()
         hash.mempty()
 
@@ -146,7 +146,7 @@ class TestHashMapMutable(unittest.TestCase):
 
     @given(a=st.lists(st.integers()),
            b=st.lists(st.integers()), c=st.lists(st.integers()))
-    def test_monoid_associativity(self, a, b, c) -> None:
+    def test_monoid_associativity(self, a: int, b: int, c: int) -> None:
 
         hash_a_1 = HashMap()
         hash_a_2 = HashMap()
@@ -168,7 +168,7 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertEqual(hash_a_1.to_list(), hash_a_2.to_list())
 
     @given(a=st.lists(st.integers()))
-    def test_empty(self, a) -> None:
+    def test_empty(self, a: int) -> None:
         hash = HashMap()
         hash.from_list(a)
         hash.mempty()
