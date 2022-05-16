@@ -2,17 +2,12 @@ from typing import Callable, TypeVar, Generic
 
 
 class Node:
-    """
-    Used to initialize element nodes
-    :param key:key of element node
-    :param value:value of element node
-    """
     def __init__(self, key=None, value=None):
         self.key = key
         self.value = value
 
 
-VI = TypeVar("VI", Node, None, str, int, float, object)
+VI = TypeVar("VI", Node, str, int, float, object)
 
 
 class HashMap(Generic[VI]):
