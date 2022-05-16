@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Any, TypeVar, Generic
+from typing import Callable, Dict, Any, Generic, Union
 
 
 class Node:
@@ -7,7 +7,8 @@ class Node:
         self.value = value
 
 
-VI = TypeVar("VI", None, Node, str, int, float, object)
+# VI = TypeVar("VI", None, Node, str, int, float, object)
+VI = Union[int, str, Node, float, bool, list, dict, object, None]
 
 
 class HashMap(Generic[VI]):
@@ -80,14 +81,14 @@ class HashMap(Generic[VI]):
         j = 0
         while j < self.size:
             if self.data[hash_value] == self.empty:
-                return -1
+                return None
             elif self.data[hash_value].key == key:
                 return self.data[hash_value].value
             else:
                 hash_value = (hash_value + 1) % self.size
                 j += 1
         print("no element")
-        return -1
+        return None
 
     def get_hash_value(self, key: int) -> int:
         """
