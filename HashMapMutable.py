@@ -197,7 +197,7 @@ class HashMap:
         transfer hash map into dict
         :return: result kvDict
         """
-        kvDict = {}
+        kvDict:Dict[Any, Any] = {}
         if self.len == 0:
             return kvDict
         else:
@@ -238,12 +238,12 @@ class HashMap:
             value = a.get(key)
             self.add(key, value)
 
-    def find_iseven(self) -> list:
+    def find_iseven(self) -> list[Any]:
         """
         Find element with even value in hash map.
         :return:list with even number value
         """
-        List: list = self.to_list()
+        List: list[Any] = self.to_list()
         my_list = []
         for value in List:
             if type(value) is int or type(value) is float:
@@ -266,7 +266,7 @@ class HashMap:
                     data.key = -1
                     self.len -= 1
 
-    def reduce(self, f: Callable, initial_state: int) -> int:
+    def reduce(self, f: Callable[[int], int], initial_state: int) -> int:
         """
         Reduce the mapSet to one value.
         :param f: the reduce method
@@ -279,10 +279,18 @@ class HashMap:
             state = f(state, value)
         return state
 
-    def __iter__(self):
+    def __iter__(self) -> 'HashMap':
+        """
+        To get a iterable object.
+        :return: A custom dictionary object
+        """
         return iter(self.to_kv_entry_list())
 
-    def __next__(self):
+    def __next__(self) -> VI:
+        """
+        To get the next key-value item.
+        :return: The next key-value item.
+        """
         if self.index >= self.len:
             raise StopIteration("end of hashmap")
         else:
