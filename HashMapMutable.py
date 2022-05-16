@@ -2,7 +2,7 @@ from typing import Callable, Dict, Any, TypeVar, Generic
 
 
 class Node:
-    def __init__(self, key: Any, value: Any):
+    def __init__(self, key: Any = None, value: Any = None):
         self.key = key
         self.value = value
 
