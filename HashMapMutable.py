@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Any, Union
+from typing import Callable, Dict, Any, Union, Iterator
 
 
 class Node:
@@ -72,7 +72,7 @@ class HashMap:
                 return True
         return False
 
-    def get(self, key: int) -> VI:
+    def get(self, key: int) -> Any:
         """
         Find element in hash map by key.
         :param key:element key
@@ -266,7 +266,7 @@ class HashMap:
                     data.key = -1
                     self.len -= 1
 
-    def reduce(self, f: Callable[[int], int], initial_state: int) -> int:
+    def reduce(self, f: Callable[[int, int], int], initial_state: int) -> int:
         """
         Reduce the mapSet to one value.
         :param f: the reduce method
@@ -279,7 +279,7 @@ class HashMap:
             state = f(state, value)
         return state
 
-    def __iter__(self) -> 'HashMap':
+    def __iter__(self) -> Iterator[Any]:
         """
         To get a iterable object.
         :return: A custom dictionary object
