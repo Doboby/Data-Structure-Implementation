@@ -147,7 +147,8 @@ class TestHashMapMutable(unittest.TestCase):
 
     @given(a=st.lists(st.integers()),
            b=st.lists(st.integers()), c=st.lists(st.integers()))
-    def test_monoid_associativity(self, a: list[Any], b: list[Any], c: list[Any]) -> None:
+    def test_monoid_associativity(self, a: list[Any],
+                                  b: list[Any], c: list[Any]) -> None:
 
         hash_a_1 = HashMap()
         hash_a_2 = HashMap()
