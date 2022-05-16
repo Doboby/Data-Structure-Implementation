@@ -1,20 +1,20 @@
-from typing import Callable, TypeVar, Generic
+from typing import Callable, Any, TypeVar, Generic
 
 
 class Node:
-    def __init__(self, key=None, value=None):
+    def __init__(self, key: int = None, value = None):
         self.key = key
         self.value = value
 
 
-VI = TypeVar("VI", Node, str, int, float, object)
+VI = TypeVar("VI", None, Node, str, int, float, object)
 
 
 class HashMap(Generic[VI]):
     empty = Node()
 
     def __init__(self, hashcode: int = 51):
-        self.key_set: list = []
+        self.key_set: list[Any] = []
         # used to store the elements key added to the hash map
         self.data: list[Node] = [self.empty for _ in range(hashcode)]
         # Used to store element nodes
@@ -155,19 +155,19 @@ class HashMap(Generic[VI]):
     def to_kv_entry_list(self) -> list:
         """
         list to store all node in hash map
-        :return: result list
+        :return: result List
         """
-        list: list = []
+        List: list = []
         for key in self.key_set:
-            list.append(Node(key, self.get(key)))
-        return list
+            List.append(Node(key, self.get(key)))
+        return List
 
-    def from_list(self, list: list):
+    def from_list(self, List: list):
         """
         add element from list type
-        :param list:input list
+        :param List:input list
         """
-        for k, v in enumerate(list):
+        for k, v in enumerate(List):
             self.add(k, v)
 
     def to_list(self) -> list:
@@ -175,10 +175,10 @@ class HashMap(Generic[VI]):
         Transfer hash map into list type
         :return:result list
         """
-        list = []
+        List = []
         for key in self.key_set:
-            list.append(self.get(key))
-        return list
+            List.append(self.get(key))
+        return List
 
     def from_dict(self, dict: map):
         """
@@ -236,9 +236,9 @@ class HashMap(Generic[VI]):
         Find element with even value in hash map.
         :return:list with even number value
         """
-        list = self.to_list()
+        List: list = self.to_list()
         my_list = []
-        for value in list:
+        for value in List:
             if type(value) is int or type(value) is float:
                 if value % 2 == 0:
                     my_list.append(value)
