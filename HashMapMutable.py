@@ -1,4 +1,4 @@
-from typing import Callable, TypeVar, Any, Generic
+from typing import Callable, TypeVar, Generic
 
 
 class Node:
