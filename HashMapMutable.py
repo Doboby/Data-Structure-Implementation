@@ -1,30 +1,44 @@
+from typing import Callable, TypeVar, Any, Generic
 
 
 class Node:
+    """
+    Used to initialize element nodes
+    :param key:key of element node
+    :param value:value of element node
+    """
     def __init__(self, key=None, value=None):
         self.key = key
         self.value = value
 
 
-class HashMap(object):
-    empty = object()
+VI = TypeVar("VI", Node, None, str, int, float, object)
 
-    def __init__(self, hashcode=51):
-        self.key_set = []
-        self.data = [self.empty for _ in range(hashcode)]
-        self.size = hashcode
+
+class HashMap(Generic[VI]):
+    empty = Node()
+
+    def __init__(self, hashcode: int = 51):
+        self.key_set: list = []  # used to store the elements key added to the hash map
+        self.data: list[Node] = [self.empty for _ in range(hashcode)]  # Used to store element nodes
+        self.size = hashcode  # table size
         self.len = 0
         self.index = 0
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self.len
 
-    def add(self, key, value):
+    def add(self, key: int, value: VI) -> bool:
+        """
+        Insert key-value pairs into hash map
+        :param key: The key to insert into the hash map
+        :param value: element value
+        """
         if key in self.key_set:
             for temp in self.data:
                 if temp != self.empty and temp.key == key:
                     temp.value = value
-                    return
+                    return True
         else:
             hash_value = hash(key) % self.size
             kv_entry = Node(key, value)
@@ -47,14 +61,24 @@ class HashMap(object):
                         return True
                     else:
                         i += 1
+        return False
 
-    def find_in_key_set(self, value):
+    def find_in_key_set(self, value: VI) -> bool:
+        """
+        Find key in key_set list
+        :param value:value to find
+        """
         for i in self.key_set:
             if i == value:
                 return True
         return False
 
-    def get(self, key):
+    def get(self, key: int) -> VI:
+        """
+        Find element in hash map by key.
+        :param key:element key
+        :return:element value response to the input key
+        """
         hash_value = hash(key) % self.size
         j = 0
         while j < self.size:
@@ -68,7 +92,12 @@ class HashMap(object):
         print("no element")
         return None
 
-    def get_hash_value(self, key):
+    def get_hash_value(self, key: int) -> int:
+        """
+        Hash by key
+        :param key:element key
+        :return:hash value
+        """
         hash_value = hash(key) % self.size
         j = 0
         while j < self.size:
@@ -82,7 +111,12 @@ class HashMap(object):
         print("no element")
         return -1
 
-    def remove_by_key(self, key):
+    def remove_by_key(self, key: int) -> bool:
+        """
+        Delete element in hash map by key
+        :param key:element key
+        :return:Boolean type for delete success or failure
+        """
         hash_value = self.get_hash_value(key)
         if hash_value == -1:
             return False
@@ -93,7 +127,12 @@ class HashMap(object):
             self.len = self.len - 1
             return True
 
-    def remove_by_index(self, index):
+    def remove_by_index(self, index: int) -> bool:
+        """
+        Delete element in hash map by index
+        :param index:element key
+        :return:Boolean type for delete success or failure
+        """
         if index < self.size:
             key = self.data[index].key
             if key == -1 or self.data[index] == self.empty:
@@ -108,31 +147,55 @@ class HashMap(object):
             print("out of bounds")
             return False
 
-    def get_size(self):
+    def get_size(self) -> int:
+        """
+        Element number in hash map.
+        :return:number of element in hash map
+        """
         size = len(self.key_set)
         return size
 
-    def to_kv_entry_list(self):
-        list = []
+    def to_kv_entry_list(self) -> list:
+        """
+        list to store all node in hash map
+        :return: result list
+        """
+        list: list = []
         for key in self.key_set:
             list.append(Node(key, self.get(key)))
         return list
 
-    def from_list(self, list):
+    def from_list(self, list: list):
+        """
+        add element from list type
+        :param list:input list
+        """
         for k, v in enumerate(list):
             self.add(k, v)
 
-    def to_list(self):
+    def to_list(self) -> list:
+        """
+        Transfer hash map into list type
+        :return:result list
+        """
         list = []
         for key in self.key_set:
             list.append(self.get(key))
         return list
 
-    def from_dict(self, dict):
+    def from_dict(self, dict: map):
+        """
+        add elements from dict type
+        :param dict:input dict
+        """
         for k, v in dict.items():
             self.add(k, v)
 
-    def to_dict(self):
+    def to_dict(self) -> map:
+        """
+        transfer hash map into dict
+        :return: result kvDict
+        """
         kvDict = {}
         if self.len == 0:
             return kvDict
@@ -142,25 +205,40 @@ class HashMap(object):
                     kvDict[temp.key] = temp.value
         return kvDict
 
-    def map(self, func):
+    def map(self, func: Callable):
+        """
+        Map element value in hash map with func
+        :param func:input function
+        """
         for data in self.data:
             if data != self.empty and data.key != -1:
                 data.value = func(data.value)
 
     def mempty(self):
+        """
+        The empty element in property monoid, usually called mempty.
+        """
         for key in self.key_set:
             self.data[self.get_hash_value(key)] = self.empty
         self.key_set = []
         self.len = 0
 
-    def mconcat(self, a):
+    def mconcat(self, a: 'HashMap'):
+        """
+        Operation in property monoid.
+        :param a: input hash map,add it into self
+        """
         if a is None:
             return
         for key in a.key_set:
             value = a.get(key)
             self.add(key, value)
 
-    def find_iseven(self):
+    def find_iseven(self) -> list:
+        """
+        Find element with even value in hash map.
+        :return:list with even number value
+        """
         list = self.to_list()
         my_list = []
         for value in list:
@@ -169,7 +247,11 @@ class HashMap(object):
                     my_list.append(value)
         return my_list
 
-    def filter(self, function):
+    def filter(self, function: Callable):
+        """
+        Filter element with function in hash map.
+        :param function: input function
+        """
         for data in self.data:
             if data != self.empty and data.key != -1:
                 value = data.value
@@ -179,7 +261,13 @@ class HashMap(object):
                     data.key = -1
                     self.len -= 1
 
-    def reduce(self, f, initial_state):
+    def reduce(self, f: Callable, initial_state: int) -> int:
+        """
+        Reduce the mapSet to one value.
+        :param f: the reduce method
+        :param initial_state:result initial_state
+        :return:final res
+        """
         state = initial_state
         for key in self.key_set:
             value = self.get(key)
