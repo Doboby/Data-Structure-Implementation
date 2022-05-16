@@ -1,10 +1,8 @@
 from typing import Callable, Dict, Any, TypeVar, Generic
 
-V = TypeVar("V", None, str, int, float, object)
-
 
 class Node:
-    def __init__(self, key: V = None, value: V = None):
+    def __init__(self, key: Any, value: Any):
         self.key = key
         self.value = value
 
@@ -164,7 +162,7 @@ class HashMap(Generic[VI]):
             List.append(Node(key, self.get(key)))
         return List
 
-    def from_list(self, List: list):
+    def from_list(self, List: list[Any]):
         """
         add element from list type
         :param List:input list
@@ -172,7 +170,7 @@ class HashMap(Generic[VI]):
         for k, v in enumerate(List):
             self.add(k, v)
 
-    def to_list(self) -> list:
+    def to_list(self) -> list[Any]:
         """
         Transfer hash map into list type
         :return:result list
@@ -204,7 +202,7 @@ class HashMap(Generic[VI]):
                     kvDict[temp.key] = temp.value
         return kvDict
 
-    def map(self, func: Callable):
+    def map(self, func: Callable[[VI], VI]):
         """
         Map element value in hash map with func
         :param func:input function
@@ -246,7 +244,7 @@ class HashMap(Generic[VI]):
                     my_list.append(value)
         return my_list
 
-    def filter(self, function: Callable):
+    def filter(self, function: Callable[[int], bool]):
         """
         Filter element with function in hash map.
         :param function: input function
