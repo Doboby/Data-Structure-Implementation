@@ -11,7 +11,7 @@ class Node:
 VI = Union[int, str, Node, float, bool, list, dict, object, None]
 
 
-class HashMap(Generic[VI]):
+class HashMap:
     empty = Node()
 
     def __init__(self, hashcode: int = 51):
