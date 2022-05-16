@@ -1,8 +1,9 @@
-from typing import Callable, Any, TypeVar, Generic
+from typing import Callable, Dict, Any, TypeVar, Generic
 
+V = TypeVar("V", None, str, int, float, object)
 
 class Node:
-    def __init__(self, key: int = None, value: Any = None):
+    def __init__(self, key: V = None, value: V = None):
         self.key = key
         self.value = value
 
@@ -80,14 +81,14 @@ class HashMap(Generic[VI]):
         j = 0
         while j < self.size:
             if self.data[hash_value] == self.empty:
-                return None
+                return -1
             elif self.data[hash_value].key == key:
                 return self.data[hash_value].value
             else:
                 hash_value = (hash_value + 1) % self.size
                 j += 1
         print("no element")
-        return None
+        return -1
 
     def get_hash_value(self, key: int) -> int:
         """
@@ -152,12 +153,12 @@ class HashMap(Generic[VI]):
         size = len(self.key_set)
         return size
 
-    def to_kv_entry_list(self) -> list:
+    def to_kv_entry_list(self) -> list[Any]:
         """
         list to store all node in hash map
         :return: result List
         """
-        List: list = []
+        List: list[Any] = []
         for key in self.key_set:
             List.append(Node(key, self.get(key)))
         return List
@@ -180,7 +181,7 @@ class HashMap(Generic[VI]):
             List.append(self.get(key))
         return List
 
-    def from_dict(self, dict: map):
+    def from_dict(self, dict: Dict[Any, Any]):
         """
         add elements from dict type
         :param dict:input dict
@@ -188,7 +189,7 @@ class HashMap(Generic[VI]):
         for k, v in dict.items():
             self.add(k, v)
 
-    def to_dict(self) -> map:
+    def to_dict(self) -> Dict[Any, Any]:
         """
         transfer hash map into dict
         :return: result kvDict
