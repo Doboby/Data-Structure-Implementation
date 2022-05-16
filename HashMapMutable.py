@@ -65,6 +65,7 @@ class HashMap:
         """
         Find key in key_set list
         :param value:value to find
+        :return: find or not
         """
         for i in self.key_set:
             if i == value:
@@ -163,7 +164,7 @@ class HashMap:
             List.append(Node(key, self.get(key)))
         return List
 
-    def from_list(self, List: list[Any]):
+    def from_list(self, List: list[Any]) -> None:
         """
         add element from list type
         :param List:input list
@@ -182,7 +183,7 @@ class HashMap:
             List.append(self.get(key))
         return List
 
-    def from_dict(self, dict: Dict[Any, Any]):
+    def from_dict(self, dict: Dict[Any, Any]) -> None:
         """
         add elements from dict type
         :param dict:input dict
@@ -205,7 +206,7 @@ class HashMap:
                     kvDict[temp.key] = temp.value
         return kvDict
 
-    def map(self, func: Callable[[VI], VI]):
+    def map(self, func: Callable[[VI], VI]) -> None:
         """
         Map element value in hash map with func
         :param func:input function
@@ -215,7 +216,7 @@ class HashMap:
             if data != self.empty and data.key != -1:
                 data.value = func(data.value)
 
-    def mempty(self):
+    def mempty(self) -> None:
         """
         The empty element in property monoid, usually called mempty.
         :return: None
@@ -225,7 +226,7 @@ class HashMap:
         self.key_set = []
         self.len = 0
 
-    def mconcat(self, a: 'HashMap'):
+    def mconcat(self, a: 'HashMap') -> None:
         """
         Operation in property monoid.
         :param a: input hash map,add it into self
@@ -250,7 +251,7 @@ class HashMap:
                     my_list.append(value)
         return my_list
 
-    def filter(self, function: Callable[[int], bool]):
+    def filter(self, function: Callable[[int], bool]) -> None:
         """
         Filter element with function in hash map.
         :param function: input function
