@@ -1,8 +1,10 @@
-from typing import Callable, Dict, Any, Union, Iterator
+from typing import Callable, Dict, TypeVar, Any, Union, Iterator, Generic
+
+V = TypeVar("VI", None, str, int, float, object)
 
 
-class Node:
-    def __init__(self, key: Any = -1, value: Any = -1):
+class Node(Generic[V]):
+    def __init__(self, key: V = -1, value: V = -1):
         self.key = key
         self.value = value
 
@@ -14,19 +16,19 @@ VI = Union[int, str, Node, float, bool, list, dict, object, None, Any]
 class HashMap:
     empty = Node()
 
-    def __init__(self, hashcode: int = 51):
-        self.key_set: list[Any] = []
+    def __init__(self, hashcode: VI = 51):
+        self.key_set: list[VI] = []
         # used to store the elements key added to the hash map
-        self.data: list[Node] = [self.empty for _ in range(hashcode)]
+        self.data: list[VI] = [self.empty for _ in range(hashcode)]
         # Used to store element nodes
         self.size = hashcode  # table size
         self.len = 0
         self.index = 0
 
-    def __len__(self) -> int:
+    def __len__(self) -> VI:
         return self.len
 
-    def add(self, key: int, value: VI) -> bool:
+    def add(self, key: VI, value: VI) -> VI:
         """
         Insert key-value pairs into hash map
         :param key: The key to insert into the hash map
@@ -61,18 +63,18 @@ class HashMap:
                         i += 1
         return False
 
-    def find_in_key_set(self, value: VI) -> bool:
+    def find_in_key_set(self, key: VI) -> VI:
         """
         Find key in key_set list
         :param value:value to find
         :return: find or not
         """
         for i in self.key_set:
-            if i == value:
+            if i == key:
                 return True
         return False
 
-    def get(self, key: int) -> Any:
+    def get(self, key: VI) -> VI:
         """
         Find element in hash map by key.
         :param key:element key
@@ -91,7 +93,7 @@ class HashMap:
         print("no element")
         return None
 
-    def get_hash_value(self, key: int) -> int:
+    def get_hash_value(self, key: VI) -> VI:
         """
         Hash by key
         :param key:element key
@@ -110,7 +112,7 @@ class HashMap:
         print("no element")
         return -1
 
-    def remove_by_key(self, key: int) -> bool:
+    def remove_by_key(self, key: VI) -> VI:
         """
         Delete element in hash map by key
         :param key:element key
@@ -126,7 +128,7 @@ class HashMap:
             self.len = self.len - 1
             return True
 
-    def remove_by_index(self, index: int) -> bool:
+    def remove_by_index(self, index: VI) -> VI:
         """
         Delete element in hash map by index
         :param index:element key
@@ -146,7 +148,7 @@ class HashMap:
             print("out of bounds")
             return False
 
-    def get_size(self) -> int:
+    def get_size(self) -> VI:
         """
         Element number in hash map.
         :return:number of element in hash map
@@ -154,17 +156,17 @@ class HashMap:
         size = len(self.key_set)
         return size
 
-    def to_kv_entry_list(self) -> list[Any]:
+    def to_kv_entry_list(self) -> VI:
         """
         list to store all node in hash map
         :return: result List
         """
-        List: list[Any] = []
+        List: list[VI] = []
         for key in self.key_set:
             List.append(Node(key, self.get(key)))
         return List
 
-    def from_list(self, List: list[Any]) -> None:
+    def from_list(self, List: VI) -> VI:
         """
         add element from list type
         :param List:input list
@@ -173,7 +175,7 @@ class HashMap:
         for k, v in enumerate(List):
             self.add(k, v)
 
-    def to_list(self) -> list[Any]:
+    def to_list(self) -> VI:
         """
         Transfer hash map into list type
         :return:result list
@@ -183,7 +185,7 @@ class HashMap:
             List.append(self.get(key))
         return List
 
-    def from_dict(self, dict: Dict[Any, Any]) -> None:
+    def from_dict(self, dict: Dict[VI, VI]) -> VI:
         """
         add elements from dict type
         :param dict:input dict
@@ -192,12 +194,12 @@ class HashMap:
         for k, v in dict.items():
             self.add(k, v)
 
-    def to_dict(self) -> Dict[Any, Any]:
+    def to_dict(self) -> Dict[VI, VI]:
         """
         transfer hash map into dict
         :return: result kvDict
         """
-        kvDict: Dict[Any, Any] = {}
+        kvDict: Dict[VI, VI] = {}
         if self.len == 0:
             return kvDict
         else:
@@ -206,7 +208,7 @@ class HashMap:
                     kvDict[temp.key] = temp.value
         return kvDict
 
-    def map(self, func: Callable[[VI], VI]) -> None:
+    def map(self, func: Callable[[VI], VI]) -> VI:
         """
         Map element value in hash map with func
         :param func:input function
@@ -216,7 +218,7 @@ class HashMap:
             if data != self.empty and data.key != -1:
                 data.value = func(data.value)
 
-    def mempty(self) -> None:
+    def mempty(self) -> VI:
         """
         The empty element in property monoid, usually called mempty.
         :return: None
@@ -226,7 +228,7 @@ class HashMap:
         self.key_set = []
         self.len = 0
 
-    def mconcat(self, a: 'HashMap') -> None:
+    def mconcat(self, a: 'HashMap') -> VI:
         """
         Operation in property monoid.
         :param a: input hash map,add it into self
@@ -238,12 +240,12 @@ class HashMap:
             value = a.get(key)
             self.add(key, value)
 
-    def find_iseven(self) -> list[Any]:
+    def find_iseven(self) -> VI:
         """
         Find element with even value in hash map.
         :return:list with even number value
         """
-        List: list[Any] = self.to_list()
+        List: VI = self.to_list()
         my_list = []
         for value in List:
             if type(value) is int or type(value) is float:
@@ -251,7 +253,7 @@ class HashMap:
                     my_list.append(value)
         return my_list
 
-    def filter(self, function: Callable[[int], bool]) -> None:
+    def filter(self, function: Callable[[VI], VI]) -> VI:
         """
         Filter element with function in hash map.
         :param function: input function
@@ -266,7 +268,7 @@ class HashMap:
                     data.key = -1
                     self.len -= 1
 
-    def reduce(self, f: Callable[[int, int], int], initial_state: int) -> int:
+    def reduce(self, f: Callable[[VI, VI], VI], initial_state: VI) -> VI:
         """
         Reduce the mapSet to one value.
         :param f: the reduce method
@@ -279,7 +281,7 @@ class HashMap:
             state = f(state, value)
         return state
 
-    def __iter__(self) -> Iterator[Any]:
+    def __iter__(self) -> Iterator[VI]:
         """
         To get a iterable object.
         :return: A custom dictionary object
