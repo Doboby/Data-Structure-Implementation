@@ -1,8 +1,8 @@
-from typing import Callable, Dict, Any, Union, Iterator
+from typing import Callable, Dict, Any, Union, Iterator, List
 
 
 class Node:
-    def __init__(self, key: Any = -1, value: Any = -1):
+    def __init__(self, key: Union[int, str, float] = -1, value: Union[int, str, float, bool, object, None] = -1):
         self.key = key
         self.value = value
 
@@ -15,7 +15,7 @@ class HashMap:
     empty = Node()
 
     def __init__(self, hashcode: int = 51):
-        self.key_set: list[Any] = []
+        self.key_set: list[Union[int, str, float]] = []
         # used to store the elements key added to the hash map
         self.data: list[Node] = [self.empty for _ in range(hashcode)]
         # Used to store element nodes
@@ -26,7 +26,8 @@ class HashMap:
     def __len__(self) -> int:
         return self.len
 
-    def add(self, key: int, value: VI) -> bool:
+    def add(self, key: Union[int, str, float],
+            value: Union[int, str, float, bool, object, None]) -> bool:
         """
         Insert key-value pairs into hash map
         :param key: The key to insert into the hash map
@@ -61,7 +62,7 @@ class HashMap:
                         i += 1
         return False
 
-    def find_in_key_set(self, value: VI) -> bool:
+    def find_in_key_set(self, value: Union[int, str, float, bool, object, None]) -> bool:
         """
         Find key in key_set list
         :param value:value to find
@@ -72,7 +73,7 @@ class HashMap:
                 return True
         return False
 
-    def get(self, key: int) -> Any:
+    def get(self, key: Union[int, str, float]) -> Union[int, str, float, bool, object, None]:
         """
         Find element in hash map by key.
         :param key:element key
@@ -91,7 +92,8 @@ class HashMap:
         print("no element")
         return None
 
-    def get_hash_value(self, key: int) -> int:
+    def get_hash_value(self, key: Union[int, str, float]) -> \
+            Union[int, str, float, bool, object, None]:
         """
         Hash by key
         :param key:element key
@@ -110,7 +112,7 @@ class HashMap:
         print("no element")
         return -1
 
-    def remove_by_key(self, key: int) -> bool:
+    def remove_by_key(self, key: Union[int, str, float]) -> bool:
         """
         Delete element in hash map by key
         :param key:element key
@@ -154,36 +156,37 @@ class HashMap:
         size = len(self.key_set)
         return size
 
-    def to_kv_entry_list(self) -> list[Any]:
+    def to_kv_entry_list(self) -> List[Union[int, str, float, bool, object, None]]:
         """
         list to store all node in hash map
         :return: result List
         """
-        List: list[Any] = []
+        l: List[Union[int, str, float, bool, object, None]] = []
         for key in self.key_set:
-            List.append(Node(key, self.get(key)))
-        return List
+            l.append(Node(key, self.get(key)))
+        return l
 
-    def from_list(self, List: list[Any]) -> None:
+    def from_list(self, l: List[Union[int, str, float, bool, object, None]]) -> None:
         """
         add element from list type
-        :param List:input list
+        :param l:input list
         :return: None
         """
-        for k, v in enumerate(List):
+        for k, v in enumerate(l):
             self.add(k, v)
 
-    def to_list(self) -> list[Any]:
+    def to_list(self) -> List[Union[int, str, float, bool, object, None]]:
         """
         Transfer hash map into list type
         :return:result list
         """
-        List = []
+        l = []
         for key in self.key_set:
-            List.append(self.get(key))
-        return List
+            l.append(self.get(key))
+        return l
 
-    def from_dict(self, dict: Dict[Any, Any]) -> None:
+    def from_dict(self, dict: Dict[Union[int, str, float],
+                                   Union[int, str, float, bool, object, None]]) -> None:
         """
         add elements from dict type
         :param dict:input dict
@@ -192,12 +195,14 @@ class HashMap:
         for k, v in dict.items():
             self.add(k, v)
 
-    def to_dict(self) -> Dict[Any, Any]:
+    def to_dict(self) -> Dict[Union[int, str, float],
+                              Union[int, str, float, bool, object, None]]:
         """
         transfer hash map into dict
         :return: result kvDict
         """
-        kvDict: Dict[Any, Any] = {}
+        kvDict: Dict[Union[int, str, float],
+                     Union[int, str, float, bool, object, None]] = {}
         if self.len == 0:
             return kvDict
         else:
@@ -206,7 +211,8 @@ class HashMap:
                     kvDict[temp.key] = temp.value
         return kvDict
 
-    def map(self, func: Callable[[VI], VI]) -> None:
+    def map(self, func: Callable[[Union[int, str, float, bool, object, None]],
+                                 Union[int, str, float, bool, object, None]]) -> None:
         """
         Map element value in hash map with func
         :param func:input function
@@ -238,14 +244,14 @@ class HashMap:
             value = a.get(key)
             self.add(key, value)
 
-    def find_iseven(self) -> list[Any]:
+    def find_iseven(self) -> List[Union[int, str, float, bool, object, None]]:
         """
         Find element with even value in hash map.
         :return:list with even number value
         """
-        List: list[Any] = self.to_list()
+        l: List[Union[int, str, float, bool, object, None]] = self.to_list()
         my_list = []
-        for value in List:
+        for value in l:
             if type(value) is int or type(value) is float:
                 if value % 2 == 0:
                     my_list.append(value)
@@ -286,7 +292,7 @@ class HashMap:
         """
         return iter(self.to_kv_entry_list())
 
-    def __next__(self) -> VI:
+    def __next__(self) -> Union[int, str, float, bool, object, None]:
         """
         To get the next key-value item.
         :return: The next key-value item.

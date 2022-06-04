@@ -1,5 +1,5 @@
 import unittest
-from typing import Any
+from typing import Any, List, Union
 from hypothesis import given
 import hypothesis.strategies as st
 from HashMapMutable import HashMap
@@ -114,26 +114,26 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertRaises(StopIteration, lambda: next(i))
 
     @given(st.lists(st.integers()))
-    def test_from_list_to_list_equality(self, a: list[Any]) -> None:
+    def test_from_list_to_list_equality(self, a: List[Union[int, str, float, bool, object, None]]) -> None:
         hash = HashMap()
         hash.from_list(a)
         b = hash.to_list()
         self.assertEqual(a, b)
 
     @given(st.lists(st.integers()))
-    def test_python_len_and_list_size_equality(self, a: list[Any]) -> None:
+    def test_python_len_and_list_size_equality(self, a: List[Union[int, str, float, bool, object, None]]) -> None:
         hash = HashMap()
         hash.from_list(a)
         self.assertEqual(hash.get_size(), len(a))
 
     @given(st.lists(st.integers()))
-    def test_from_list(self, a: list[Any]) -> None:
+    def test_from_list(self, a: List[Union[int, str, float, bool, object, None]]) -> None:
         hash = HashMap()
         hash.from_list(a)
         self.assertEqual(hash.to_list(), a)
 
     @given(a=st.lists(st.integers()))
-    def test_monoid_identity(self, a: list[Any]) -> None:
+    def test_monoid_identity(self, a: List[Union[int, str, float, bool, object, None]]) -> None:
         hash = HashMap()
         hash.mempty()
 
@@ -147,8 +147,8 @@ class TestHashMapMutable(unittest.TestCase):
 
     @given(a=st.lists(st.integers()),
            b=st.lists(st.integers()), c=st.lists(st.integers()))
-    def test_monoid_associativity(self, a: list[Any],
-                                  b: list[Any], c: list[Any]) -> None:
+    def test_monoid_associativity(self, a: List[Union[int, str, float, bool, object, None]],
+                                  b: List[Union[int, str, float, bool, object, None]], c: List[Union[int, str, float, bool, object, None]]) -> None:
 
         hash_a_1 = HashMap()
         hash_a_2 = HashMap()
@@ -170,7 +170,7 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertEqual(hash_a_1.to_list(), hash_a_2.to_list())
 
     @given(a=st.lists(st.integers()))
-    def test_empty(self, a: list[Any]) -> None:
+    def test_empty(self, a: List[Union[int, str, float, bool, object, None]]) -> None:
         hash = HashMap()
         hash.from_list(a)
         hash.mempty()
