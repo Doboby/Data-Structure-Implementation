@@ -159,9 +159,11 @@ class TestHashMapMutable(unittest.TestCase):
 
     @given(a=st.lists(st.integers()),
            b=st.lists(st.integers()), c=st.lists(st.integers()))
-    def test_monoid_associativity(self, a: List[Union[int, str, float, bool, object, None]],
-                                  b: List[Union[int, str, float, bool, object, None]],
-                                  c: List[Union[int, str, float, bool, object, None]]) -> None:
+    def test_monoid_associativity(
+            self,
+            a: List[Union[int, str, float, bool, object, None]],
+            b: List[Union[int, str,  float, bool, object, None]],
+            c: List[Union[int, str, float, bool, object, None]]) -> None:
         hash_a_1 = HashMap()
         hash_a_2 = HashMap()
         hash_b = HashMap()
@@ -182,7 +184,9 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertEqual(hash_a_1.to_list(), hash_a_2.to_list())
 
     @given(a=st.lists(st.integers()))
-    def test_empty(self, a: List[Union[int, str, float, bool, object, None]]) -> None:
+    def test_empty(
+            self,
+            a: List[Union[int, str, float, bool, object, None]]) -> None:
         hash = HashMap()
         hash.from_list(a)
         hash.mempty()
