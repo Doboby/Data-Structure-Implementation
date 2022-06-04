@@ -161,19 +161,19 @@ class HashMap:
         list to store all node in hash map
         :return: result List
         """
-        l: List[Union[int, str, float, bool, object, None]] = []
+        result: List[Union[int, str, float, bool, object, None]] = []
         for key in self.key_set:
-            l.append(Node(key, self.get(key)))
-        return l
+            result.append(Node(key, self.get(key)))
+        return result
 
-    def from_list(self, l: List[Union[int, str, float,
-                                      bool, object, None]]) -> None:
+    def from_list(self, input_list: List[Union[int, str, float,
+                                               bool, object, None]]) -> None:
         """
         add element from list type
-        :param l:input list
+        :param input_list:input list
         :return: None
         """
-        for k, v in enumerate(l):
+        for k, v in enumerate(input_list):
             self.add(k, v)
 
     def to_list(self) -> List[Union[int, str, float, bool, object, None]]:
@@ -181,10 +181,10 @@ class HashMap:
         Transfer hash map into list type
         :return:result list
         """
-        l = []
+        result = []
         for key in self.key_set:
-            l.append(self.get(key))
-        return l
+            result.append(self.get(key))
+        return result
 
     def from_dict(self, dict: Dict[Union[int, str, float],
                                    Union[int, str, float,
