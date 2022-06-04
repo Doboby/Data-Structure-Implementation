@@ -2,7 +2,7 @@ import unittest
 from typing import List, Union, Dict
 from hypothesis import given
 import hypothesis.strategies as st
-from HashMapMutable import HashMap
+from HashMapMutable import HashMap, Node
 
 
 class TestHashMapMutable(unittest.TestCase):
@@ -121,9 +121,12 @@ class TestHashMapMutable(unittest.TestCase):
             {1: 123, 2: 333, 3: 23, 4: 323}
         table = HashMap()
         table.from_dict(dict1)
-        tmp = {}
-        for e in table:
-            tmp[e.key] = e.value
+        tmp: Dict[
+            Union[int, str, float],
+            Union[int, str, float, bool, object, None]] = {}
+        for e in table.data:
+            if e != table.empty and e.key != -1:
+                tmp[e.key] = e.value
         self.assertEqual(table.to_dict(), tmp)
         i = iter(HashMap())
         self.assertRaises(StopIteration, lambda: next(i))

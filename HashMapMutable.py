@@ -2,10 +2,10 @@ from typing import Callable, Dict, Union, Iterator, List
 
 
 class Node:
-    def __init__(self, key: Union[int, str, float] = -1,
-                 value: Union[int, str, float, bool, object, None] = -1):
-        self.key = key
-        self.value = value
+    def __init__(self, key: Union[int, str, float, None] = None,
+                 value: Union[int, str, float, bool, object, None] = None):
+        self.key: Union[int, str, float] = key
+        self.value: Union[int, str, float, bool, object, None] = value
 
 
 class HashMap:
@@ -279,9 +279,7 @@ class HashMap:
                     data.key = -1
                     self.len -= 1
 
-    def reduce(self, f: Callable[[int, Union[int, str, float, bool,
-                                             object, None]], int],
-               initial_state: int) -> int:
+    def reduce(self, f: Callable, initial_state: int) -> int:
         """
         Reduce the mapSet to one value.
         :param f: the reduce method
