@@ -12,9 +12,9 @@ class HashMap:
     empty = Node()
 
     def __init__(self, hashcode: int = 51):
-        self.key_set: list[Union[int, str, float]] = []
+        self.key_set: List[Union[int, str, float]] = []
         # used to store the elements key added to the hash map
-        self.data: list[Node] = [self.empty for _ in range(hashcode)]
+        self.data: List[Node] = [self.empty for _ in range(hashcode)]
         # Used to store element nodes
         self.size = hashcode  # table size
         self.len = 0
@@ -255,7 +255,7 @@ class HashMap:
         :return:list with even number value
         """
         l: List[Union[int, str, float, bool, object, None]] = self.to_list()
-        my_list = []
+        my_list: List[Union[int, str, float, bool, object, None]] = []
         for value in l:
             if type(value) is int or type(value) is float:
                 if value % 2 == 0:
@@ -263,9 +263,7 @@ class HashMap:
         return my_list
 
     def filter(self, function: Callable[[Union[int, str, float,
-                                               bool, object, None]],
-                                        Union[int, str, float,
-                                              bool, object, None]]) -> None:
+                                               bool, object, None]], bool]) -> None:
         """
         Filter element with function in hash map.
         :param function: input function

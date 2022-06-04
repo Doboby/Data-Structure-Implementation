@@ -38,10 +38,11 @@ class TestHashMapMutable(unittest.TestCase):
 
     def test_from_dict(self) -> None:
         hash = HashMap()
-        dict1: Dict[int, int] = {1: 2, 2: 4, 3: 6, 4: 8}
-        dict2: Dict[str, int] = {"abc": 2, "def": 4}
-        hash.from_dict(dict1)
-        hash.from_dict(dict2)
+        dict: Dict[
+            Union[int, str, float],
+            Union[int, str, float, bool, object, None]] \
+            = {"abc": 2, 1: 2, 2: 4, 3: 6, 4: 8}
+        hash.from_dict(dict)
         self.assertEqual(hash.get(4), 8)
         self.assertEqual(hash.get(3), 6)
 
@@ -66,7 +67,9 @@ class TestHashMapMutable(unittest.TestCase):
 
     def test_to_list(self) -> None:
         hash = HashMap()
-        dict = {4: 2, 3: 2, 5: 1, 1: 3}
+        dict: Dict[
+            Union[int, str, float],
+            Union[int, str, float, bool, object, None]] = {4: 2, 3: 2, 5: 1, 1: 3}
         hash.from_dict(dict)
         self.assertEqual(hash.to_list(), [2, 2, 1, 3])
 
@@ -77,7 +80,7 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertEqual(hash.find_iseven(), [6.0])
 
     def test_filter(self) -> None:
-        def even(value: int) -> bool:
+        def even(value: Union[int, str, float, bool, object, None]) -> bool:
             if type(value) is int or type(value) is float:
                 if value % 2 == 0:
                     return False
@@ -89,8 +92,12 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertEqual(hash.to_list(), [1, 5, 7.0, None, 'ss', 'dasd'])
 
     def test_map(self) -> None:
-        dict1 = {3: 23, 4: 323}
-        dict2 = {3: '23', 4: '323'}
+        dict1: Dict[
+            Union[int, str, float],
+            Union[int, str, float, bool, object, None]] = {3: 23, 4: 323}
+        dict2: Dict[
+            Union[int, str, float],
+            Union[int, str, float, bool, object, None]] = {3: '23', 4: '323'}
         hash = HashMap()
         hash.from_dict(dict1)
         hash.map(str)
@@ -99,13 +106,18 @@ class TestHashMapMutable(unittest.TestCase):
     def test_reduce(self) -> None:
         hash = HashMap()
         self.assertEqual(hash.reduce(lambda st, e: st + e, 0), 0)
-        dict1 = {3: 23, 4: 323}
+        dict1: Dict[
+            Union[int, str, float],
+            Union[int, str, float, bool, object, None]] = {3: 23, 4: 323}
         hash1 = HashMap()
         hash1.from_dict(dict1)
         self.assertEqual(hash1.reduce(lambda st, e: st + e, 0), 346)
 
     def test_iter(self) -> None:
-        dict1 = {1: 123, 2: 333, 3: 23, 4: 323}
+        dict1: Dict[
+            Union[int, str, float],
+            Union[int, str, float, bool, object, None]] = \
+            {1: 123, 2: 333, 3: 23, 4: 323}
         table = HashMap()
         table.from_dict(dict1)
         tmp = {}
