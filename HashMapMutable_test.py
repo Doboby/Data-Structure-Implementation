@@ -1,8 +1,10 @@
 import unittest
-from typing import Any, List, Union
+from typing import Any, List, Union, Dict
 from hypothesis import given
 import hypothesis.strategies as st
 from HashMapMutable import HashMap
+
+VI = Union[int, str, float, bool, list, dict, object, None, Any]
 
 
 class TestHashMapMutable(unittest.TestCase):
@@ -38,8 +40,10 @@ class TestHashMapMutable(unittest.TestCase):
 
     def test_from_dict(self) -> None:
         hash = HashMap()
-        dict = {1: 2, 2: 4, 3: 6, 4: 8}
-        hash.from_dict(dict)
+        dict1: Dict[int, int] = {1: 2, 2: 4, 3: 6, 4: 8}
+        dict2: Dict[str, int] = {"abc": 2, "def": 4}
+        hash.from_dict(dict1)
+        hash.from_dict(dict2)
         self.assertEqual(hash.get(4), 8)
         self.assertEqual(hash.get(3), 6)
 
@@ -149,7 +153,6 @@ class TestHashMapMutable(unittest.TestCase):
            b=st.lists(st.integers()), c=st.lists(st.integers()))
     def test_monoid_associativity(self, a: List[Union[int, str, float, bool, object, None]],
                                   b: List[Union[int, str, float, bool, object, None]], c: List[Union[int, str, float, bool, object, None]]) -> None:
-
         hash_a_1 = HashMap()
         hash_a_2 = HashMap()
         hash_b = HashMap()

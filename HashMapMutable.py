@@ -7,13 +7,8 @@ class Node:
         self.value = value
 
 
-# VI = TypeVar("VI", None, Node, str, int, float, object)
-VI = Union[int, str, Node, float, bool, list, dict, object, None, Any]
-
-
 class HashMap:
     empty = Node()
-
     def __init__(self, hashcode: int = 51):
         self.key_set: list[Union[int, str, float]] = []
         # used to store the elements key added to the hash map
@@ -62,14 +57,14 @@ class HashMap:
                         i += 1
         return False
 
-    def find_in_key_set(self, value: Union[int, str, float, bool, object, None]) -> bool:
+    def find_in_key_set(self, key: Union[int, str, float, bool, object, None]) -> bool:
         """
         Find key in key_set list
-        :param value:value to find
+        :param key:key to find
         :return: find or not
         """
         for i in self.key_set:
-            if i == value:
+            if i == key:
                 return True
         return False
 
@@ -257,7 +252,8 @@ class HashMap:
                     my_list.append(value)
         return my_list
 
-    def filter(self, function: Callable[[int], bool]) -> None:
+    def filter(self, function: Callable[[Union[int, str, float, bool, object, None]],
+                                        Union[int, str, float, bool, object, None]]) -> None:
         """
         Filter element with function in hash map.
         :param function: input function
@@ -272,7 +268,7 @@ class HashMap:
                     data.key = -1
                     self.len -= 1
 
-    def reduce(self, f: Callable[[int, int], int], initial_state: int) -> int:
+    def reduce(self, f: Callable[[int, Union[int, str, float, bool, object, None]], int], initial_state: int) -> int:
         """
         Reduce the mapSet to one value.
         :param f: the reduce method
@@ -285,7 +281,7 @@ class HashMap:
             state = f(state, value)
         return state
 
-    def __iter__(self) -> Iterator[Any]:
+    def __iter__(self) -> Iterator[Union[int, str, float, bool, object, None]]:
         """
         To get a iterable object.
         :return: A custom dictionary object
