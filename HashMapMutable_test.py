@@ -118,26 +118,34 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertRaises(StopIteration, lambda: next(i))
 
     @given(st.lists(st.integers()))
-    def test_from_list_to_list_equality(self, a: List[Union[int, str, float, bool, object, None]]) -> None:
+    def test_from_list_to_list_equality(
+            self,
+            a: List[Union[int, str, float, bool, object, None]]) -> None:
         hash = HashMap()
         hash.from_list(a)
         b = hash.to_list()
         self.assertEqual(a, b)
 
     @given(st.lists(st.integers()))
-    def test_python_len_and_list_size_equality(self, a: List[Union[int, str, float, bool, object, None]]) -> None:
+    def test_python_len_and_list_size_equality(
+            self,
+            a: List[Union[int, str, float, bool, object, None]]) -> None:
         hash = HashMap()
         hash.from_list(a)
         self.assertEqual(hash.get_size(), len(a))
 
     @given(st.lists(st.integers()))
-    def test_from_list(self, a: List[Union[int, str, float, bool, object, None]]) -> None:
+    def test_from_list(
+            self,
+            a: List[Union[int, str, float, bool, object, None]]) -> None:
         hash = HashMap()
         hash.from_list(a)
         self.assertEqual(hash.to_list(), a)
 
     @given(a=st.lists(st.integers()))
-    def test_monoid_identity(self, a: List[Union[int, str, float, bool, object, None]]) -> None:
+    def test_monoid_identity(
+            self,
+            a: List[Union[int, str, float, bool, object, None]]) -> None:
         hash = HashMap()
         hash.mempty()
 
@@ -152,7 +160,8 @@ class TestHashMapMutable(unittest.TestCase):
     @given(a=st.lists(st.integers()),
            b=st.lists(st.integers()), c=st.lists(st.integers()))
     def test_monoid_associativity(self, a: List[Union[int, str, float, bool, object, None]],
-                                  b: List[Union[int, str, float, bool, object, None]], c: List[Union[int, str, float, bool, object, None]]) -> None:
+                                  b: List[Union[int, str, float, bool, object, None]],
+                                  c: List[Union[int, str, float, bool, object, None]]) -> None:
         hash_a_1 = HashMap()
         hash_a_2 = HashMap()
         hash_b = HashMap()
