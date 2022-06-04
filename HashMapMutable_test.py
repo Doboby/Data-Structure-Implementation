@@ -39,7 +39,7 @@ class TestHashMapMutable(unittest.TestCase):
     def test_from_dict(self) -> None:
         hash = HashMap()
         dict: Dict[
-            Union[int, str, float],
+            Union[int, str, float, None],
             Union[int, str, float, bool, object, None]] \
             = {"abc": 2, 1: 2, 2: 4, 3: 6, 4: 8}
         hash.from_dict(dict)
@@ -68,7 +68,7 @@ class TestHashMapMutable(unittest.TestCase):
     def test_to_list(self) -> None:
         hash = HashMap()
         dict: Dict[
-            Union[int, str, float],
+            Union[int, str, float, None],
             Union[int, str, float, bool, object, None]] = \
             {4: 2, 3: 2, 5: 1, 1: 3}
         hash.from_dict(dict)
@@ -94,10 +94,10 @@ class TestHashMapMutable(unittest.TestCase):
 
     def test_map(self) -> None:
         dict1: Dict[
-            Union[int, str, float],
+            Union[int, str, float, None],
             Union[int, str, float, bool, object, None]] = {3: 23, 4: 323}
         dict2: Dict[
-            Union[int, str, float],
+            Union[int, str, float, None],
             Union[int, str, float, bool, object, None]] = {3: '23', 4: '323'}
         hash = HashMap()
         hash.from_dict(dict1)
@@ -105,12 +105,12 @@ class TestHashMapMutable(unittest.TestCase):
         self.assertEqual(hash.to_dict(), dict2)
 
     def test_reduce(self) -> None:
-        def add(state: int, e: int) -> int:
+        def add(state: int, e: Union[int, str, float, bool, object, None]) -> int:
             return state + e
         hash = HashMap()
         self.assertEqual(hash.reduce(add, 0), 0)
         dict1: Dict[
-            Union[int, str, float],
+            Union[int, str, float, None],
             Union[int, str, float, bool, object, None]] = {3: 23, 4: 323}
         hash1 = HashMap()
         hash1.from_dict(dict1)
@@ -118,13 +118,13 @@ class TestHashMapMutable(unittest.TestCase):
 
     def test_iter(self) -> None:
         dict1: Dict[
-            Union[int, str, float],
+            Union[int, str, float, None],
             Union[int, str, float, bool, object, None]] = \
             {1: 123, 2: 333, 3: 23, 4: 323}
         table = HashMap()
         table.from_dict(dict1)
         tmp: Dict[
-            Union[int, str, float],
+            Union[int, str, float, None],
             Union[int, str, float, bool, object, None]] = {}
         for e in table.data:
             if e != table.empty and e.key != -1:

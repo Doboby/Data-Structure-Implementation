@@ -12,7 +12,7 @@ class HashMap:
     empty = Node()
 
     def __init__(self, hashcode: int = 51):
-        self.key_set: List[Union[int, str, float]] = []
+        self.key_set: List[Union[int, str, float, None]] = []
         # used to store the elements key added to the hash map
         self.data: List[Node] = [self.empty for _ in range(hashcode)]
         # Used to store element nodes
@@ -23,7 +23,7 @@ class HashMap:
     def __len__(self) -> int:
         return self.len
 
-    def add(self, key: Union[int, str, float],
+    def add(self, key: Union[int, str, float, None],
             value: Union[int, str, float, bool, object, None]) -> bool:
         """
         Insert key-value pairs into hash map
@@ -71,7 +71,7 @@ class HashMap:
                 return True
         return False
 
-    def get(self, key: Union[int, str, float]) -> \
+    def get(self, key: Union[int, str, float, None]) -> \
             Union[int, str, float, bool, object, None]:
         """
         Find element in hash map by key.
@@ -91,7 +91,7 @@ class HashMap:
         print("no element")
         return None
 
-    def get_hash_value(self, key: Union[int, str, float]) -> \
+    def get_hash_value(self, key: Union[int, str, float, None]) -> \
             Union[int, str, float, bool, object, None]:
         """
         Hash by key
@@ -111,7 +111,7 @@ class HashMap:
         print("no element")
         return -1
 
-    def remove_by_key(self, key: Union[int, str, float]) -> bool:
+    def remove_by_key(self, key: Union[int, str, float, None]) -> bool:
         """
         Delete element in hash map by key
         :param key:element key
@@ -186,7 +186,7 @@ class HashMap:
             result.append(self.get(key))
         return result
 
-    def from_dict(self, dict: Dict[Union[int, str, float],
+    def from_dict(self, dict: Dict[Union[int, str, float, None],
                                    Union[int, str, float,
                                          bool, object, None]]) -> None:
         """
@@ -197,13 +197,13 @@ class HashMap:
         for k, v in dict.items():
             self.add(k, v)
 
-    def to_dict(self) -> Dict[Union[int, str, float],
+    def to_dict(self) -> Dict[Union[int, str, float, None],
                               Union[int, str, float, bool, object, None]]:
         """
         transfer hash map into dict
         :return: result kvDict
         """
-        kvDict: Dict[Union[int, str, float],
+        kvDict: Dict[Union[int, str, float, None],
                      Union[int, str, float, bool, object, None]] = {}
         if self.len == 0:
             return kvDict
@@ -279,7 +279,7 @@ class HashMap:
                     data.key = -1
                     self.len -= 1
 
-    def reduce(self, f: Callable[[int, int], int], initial_state: int) -> int:
+    def reduce(self, f: Callable[[int, Union[int, str, float, bool, object, None]], int], initial_state: int) -> int:
         """
         Reduce the mapSet to one value.
         :param f: the reduce method
