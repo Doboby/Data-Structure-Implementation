@@ -2,7 +2,7 @@ import unittest
 from typing import List, Union, Dict
 from hypothesis import given
 import hypothesis.strategies as st
-from HashMapMutable import HashMap, Node
+from HashMapMutable import HashMap
 
 
 class TestHashMapMutable(unittest.TestCase):
