@@ -280,7 +280,8 @@ class HashMap:
                     self.len -= 1
 
     def reduce(self,
-               f: Callable[[int, Union[int, str, float, bool, object, None]], int],
+               f: Callable[[int, Union[int, str, float, bool, object, None]],
+                           int],
                initial_state: int) -> int:
         """
         Reduce the mapSet to one value.
