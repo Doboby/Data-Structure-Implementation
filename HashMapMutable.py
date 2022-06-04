@@ -28,7 +28,7 @@ class HashMap:
     def __len__(self) -> VI:
         return self.len
 
-    def add(self, key: Union[int, str, float], value: Union[int, str, float]) -> Union[int, str, float]:
+    def add(self, key: VI, value: VI) -> VI:
         """
         Insert key-value pairs into hash map
         :param key: The key to insert into the hash map
@@ -185,7 +185,8 @@ class HashMap:
             List.append(self.get(key))
         return List
 
-    def from_dict(self, dict: Dict[Union[int, str], Union[int, str]]) -> VI:
+
+    def from_dict(self, dict: Dict[VI, VI]) -> VI:
         """
         add elements from dict type
         :param dict:input dict

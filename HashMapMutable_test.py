@@ -1,5 +1,5 @@
 import unittest
-from typing import Any, Union, Dict
+from typing import Any, Dict, Union
 from hypothesis import given
 import hypothesis.strategies as st
 from HashMapMutable import HashMap
