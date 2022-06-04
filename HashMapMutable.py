@@ -263,7 +263,8 @@ class HashMap:
         return my_list
 
     def filter(self, function: Callable[[Union[int, str, float,
-                                               bool, object, None]], bool]) -> None:
+                                               bool, object, None]], bool]) \
+            -> None:
         """
         Filter element with function in hash map.
         :param function: input function

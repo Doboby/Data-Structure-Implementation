@@ -69,7 +69,8 @@ class TestHashMapMutable(unittest.TestCase):
         hash = HashMap()
         dict: Dict[
             Union[int, str, float],
-            Union[int, str, float, bool, object, None]] = {4: 2, 3: 2, 5: 1, 1: 3}
+            Union[int, str, float, bool, object, None]] = \
+            {4: 2, 3: 2, 5: 1, 1: 3}
         hash.from_dict(dict)
         self.assertEqual(hash.to_list(), [2, 2, 1, 3])
 
