@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Any, Union, Iterator, List
+from typing import Callable, Dict, Union, Iterator, List
 
 
 class Node:

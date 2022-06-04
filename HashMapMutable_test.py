@@ -1,10 +1,8 @@
 import unittest
-from typing import Any, List, Union, Dict
+from typing import List, Union, Dict
 from hypothesis import given
 import hypothesis.strategies as st
 from HashMapMutable import HashMap
-
-VI = Union[int, str, float, bool, list, dict, object, None, Any]
 
 
 class TestHashMapMutable(unittest.TestCase):
