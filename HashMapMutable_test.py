@@ -107,7 +107,8 @@ class TestHashMapMutable(unittest.TestCase):
     def test_reduce(self) -> None:
         def add(state: int, e: Union[int, str, float, bool, object, None]) \
                 -> Union[int, str, float, bool, object, None]:
-            result: Union[int, str, float, bool, object, None] = int(state) + int(e)
+            result: Union[int, str, float, bool, object, None] \
+                = int(state) + int(e)
             return result
         hash = HashMap()
         self.assertEqual(hash.reduce(add, 0), 0)
