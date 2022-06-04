@@ -281,8 +281,9 @@ class HashMap:
 
     def reduce(self,
                f: Callable[[int, Union[int, str, float, bool, object, None]],
-                           int],
-               initial_state: int) -> int:
+                           Union[int, str, float, bool, object, None]],
+               initial_state: int) -> Union[int, str, float, bool, object,
+                                            None]:
         """
         Reduce the mapSet to one value.
         :param f: the reduce method
